@@ -17,10 +17,11 @@ test('Verify that key sections of the homepage are visible.', async ({ page }) =
     await hp.keySectionsVisible();
 });
 
-test('Check whether user can submit the contact form without filling the textfields.', async ({ page }) => {
+test('Check whether user can submit the contact form without filling the textfields and all fields of contact page is visible.', async ({ page }) => {
     const hp = new homepage(page);
     await hp.clickContactUs();
     const cp = new contactpage(page);
+    await cp.verifyFieldsVisible();
     await cp.verifySubmissionWithEmptyFields();
 });
 

@@ -3,21 +3,21 @@ import { homepage } from '../Pages/homePage';
 import { contactpage } from '../Pages/contactPage';
 const dataset = JSON.parse(JSON.stringify(require("../TestData/testData.json")));
 
+test.beforeEach(async ({ page }) => {
+    await page.goto(dataset.url);
+});
 
 test('Check whether website is loaded properly.', async ({ page }) => {
-    await page.goto(dataset.url);
     const hp = new homepage(page);
     await hp.homepageDisplayed();
 });
 
 test('Verify that key sections of the homepage are visible.', async ({ page }) => {
-    await page.goto(dataset.url);
     const hp = new homepage(page);
     await hp.keySectionsVisible();
 });
 
 test('Check whether user can submit the contact form without filling the textfields.', async ({ page }) => {
-    await page.goto(dataset.url);
     const hp = new homepage(page);
     await hp.clickContactUs();
     const cp = new contactpage(page);
@@ -25,7 +25,6 @@ test('Check whether user can submit the contact form without filling the textfie
 });
 
 test('Check whether user can fill the invalid format in the email field.', async ({ page }) => {
-    await page.goto(dataset.url);
     const hp = new homepage(page);
     await hp.clickContactUs();
     const cp = new contactpage(page);
@@ -33,7 +32,6 @@ test('Check whether user can fill the invalid format in the email field.', async
 });
 
 test('Check whether user can fill all the text fields in contact us page.', async ({ page }) => {
-    await page.goto(dataset.url);
     const hp = new homepage(page);
     await hp.clickContactUs();
 

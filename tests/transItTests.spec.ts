@@ -4,7 +4,10 @@ import { contactpage } from '../Pages/contactPage';
 const dataset = JSON.parse(JSON.stringify(require("../TestData/testData.json")));
 
 test.beforeEach(async ({ page }) => {
-    await page.goto(dataset.url);
+    await page.goto(dataset.url, {
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+    });
 });
 
 test('Check whether website is loaded properly.', async ({ page }) => {
